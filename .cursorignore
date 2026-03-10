@@ -1,0 +1,28 @@
+# secrets
+secrets/
+.env
+.env.*
+
+# private docs
+private/
+finance/
+legal/
+internal/
+
+# node
+node_modules/
+dist/
+build/
+.cache/
+.git/
+
+# keys
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+
+# OS
+.DS_Store
+Thumbs.db
