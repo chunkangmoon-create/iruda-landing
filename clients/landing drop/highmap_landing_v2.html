@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>하이맵의원 · 이명 특화 랜딩 v2</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #111;
+      --gray-dark: #333;
+      --gray-mid: #666;
+      --gray-light: #999;
+      --gray-line: #e0e0e0;
+      --gray-bg: #f9f9f9;
+      --white: #ffffff;
+      --max-w: 480px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', Arial, 'Apple SD Gothic Neo', sans-serif;
+      background: #ebebeb;
+      color: var(--black);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      width: 100%;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      background: var(--white);
+    }
+
+    .version-bar {
+      width: 100%;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      background: var(--black);
+      color: #aaa;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      padding: 8px 24px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gray-line);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header .logo {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--black);
+    }
+    .header .logo span { font-weight: 300; color: var(--gray-mid); }
+    .header .h-cta {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--black);
+      background: none;
+      border: 1px solid var(--black);
+      border-radius: 20px;
+      padding: 6px 14px;
+      cursor: pointer;
+    }
+
+    .section {
+      padding: 52px 24px;
+      border-bottom: 1px solid var(--gray-line);
+    }
+    .section:last-child { border-bottom: none; }
+
+    .sec-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gray-light);
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.8px;
+      color: var(--black);
+      margin-bottom: 20px;
+      word-break: keep-all;
+    }
+    h2 {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+      color: var(--black);
+      margin-bottom: 16px;
+      word-break: keep-all;
+    }
+    h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 12px;
+      word-break: keep-all;
+    }
+    p {
+      font-size: 14px;
+      color: var(--gray-dark);
+      line-height: 1.75;
+      word-break: keep-all;
+    }
+    .lead {
+      font-size: 16px;
+      color: var(--gray-dark);
+      line-height: 1.7;
+      word-break: keep-all;
+    }
+    .caption {
+      font-size: 12px;
+      color: var(--gray-light);
+      line-height: 1.6;
+      word-break: keep-all;
+    }
+
+    .img-ph {
+      width: 100%;
+      height: 180px;
+      background: var(--gray-bg);
+      border: 1px dashed var(--gray-line);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: var(--gray-light);
+      margin-bottom: 32px;
+    }
+
+    .btn-main {
+      display: block;
+      width: 100%;
+      background: var(--black);
+      color: var(--white);
+      border: none;
+      border-radius: 4px;
+      padding: 16px;
+      font-size: 15px;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      letter-spacing: -0.3px;
+      margin-top: 28px;
+    }
+    .btn-sub {
+      display: block;
+      width: 100%;
+      background: var(--white);
+      color: var(--black);
+      border: 1px solid var(--black);
+      border-radius: 4px;
+      padding: 14px;
+      font-size: 14px;
+      font-weight: 500;
+      text-align: center;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    hr { border: none; border-top: 1px solid var(--gray-line); margin: 28px 0; }
+
+    /* ── 이명 소리 표현 ── */
+    .sound-line {
+      padding: 24px 0;
+      border-top: 1px solid var(--gray-line);
+      border-bottom: 1px solid var(--gray-line);
+      margin: 24px 0;
+      text-align: center;
+    }
+    .sound-line p {
+      font-size: 20px;
+      font-weight: 300;
+      letter-spacing: 6px;
+      color: var(--gray-mid);
+    }
+
+    .checklist { list-style: none; padding: 0; }
+    .checklist li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--gray-line);
+      font-size: 14px;
+      color: var(--gray-dark);
+      word-break: keep-all;
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .checklist li::before {
+      content: '✓';
+      font-size: 13px;
+      color: var(--black);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .blockquote {
+      border-left: 2px solid var(--black);
+      padding: 4px 0 4px 20px;
+      margin: 28px 0;
+    }
+    .blockquote p {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--black);
+      line-height: 1.5;
+      letter-spacing: -0.3px;
+      word-break: keep-all;
+    }
+
+    /* ── 이명 악화 트리거 ── */
+    .trigger-list { list-style: none; padding: 0; }
+    .trigger-item {
+      display: flex;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--gray-line);
+      font-size: 13px;
+      align-items: flex-start;
+    }
+    .trigger-item:last-child { border-bottom: none; }
+    .t-icon { flex-shrink: 0; font-size: 16px; }
+    .t-text { flex: 1; }
+    .t-text strong { display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 2px; }
+    .t-text span { font-size: 12px; color: var(--gray-mid); }
+
+    /* ── 동반증상 ── */
+    .symptom-list { list-style: none; padding: 0; }
+    .symptom-list li {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--gray-line);
+      font-size: 14px;
+      color: var(--gray-dark);
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      word-break: keep-all;
+    }
+    .symptom-list li:last-child { border-bottom: none; }
+    .symptom-list li .s-icon { font-size: 16px; flex-shrink: 0; }
+
+    .callout {
+      border-top: 1px solid var(--black);
+      border-bottom: 1px solid var(--gray-line);
+      padding: 16px 0;
+      margin-top: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--black);
+    }
+
+    /* ── 진단 체계 ── */
+    .diag-list { list-style: none; padding: 0; }
+    .diag-item {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--gray-line);
+    }
+    .diag-item:last-child { border-bottom: none; }
+    .diag-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--gray-light);
+      margin-bottom: 8px;
+    }
+    .diag-item strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 6px;
+    }
+    .diag-item p { font-size: 13px; color: var(--gray-mid); word-break: keep-all; }
+
+    /* ── 치료법 ── */
+    .treatment-list { list-style: none; padding: 0; }
+    .treatment-item {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--gray-line);
+    }
+    .treatment-item:last-child { border-bottom: none; }
+    .tr-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--gray-light);
+      margin-bottom: 8px;
+    }
+    .treatment-item h3 { font-size: 15px; font-weight: 600; margin-bottom: 10px; }
+    .treatment-item p { font-size: 13px; color: var(--gray-mid); margin-bottom: 8px; word-break: keep-all; }
+    .treatment-item ul {
+      padding-left: 16px;
+      margin-top: 8px;
+    }
+    .treatment-item ul li {
+      font-size: 13px;
+      color: var(--gray-mid);
+      margin-bottom: 4px;
+      word-break: keep-all;
+    }
+
+    /* ── 사례 ── */
+    .case-item {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--gray-line);
+    }
+    .case-item:last-child { border-bottom: none; }
+    .case-period {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--gray-light);
+      margin-bottom: 10px;
+    }
+    .case-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 12px;
+      line-height: 1.4;
+      word-break: keep-all;
+    }
+    .case-body {
+      font-size: 13px;
+      color: var(--gray-mid);
+      line-height: 1.7;
+      word-break: keep-all;
+    }
+    .case-result {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--gray-line);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--black);
+      line-height: 1.6;
+    }
+
+    /* ── 강점 ── */
+    .strength-list { list-style: none; padding: 0; }
+    .strength-item {
+      display: flex;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--gray-line);
+      align-items: flex-start;
+    }
+    .strength-item:last-child { border-bottom: none; }
+    .s-num {
+      flex-shrink: 0;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gray-line);
+      padding-top: 2px;
+      width: 20px;
+    }
+    .s-body strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 6px;
+    }
+    .s-body p { font-size: 13px; color: var(--gray-mid); word-break: keep-all; }
+
+    /* ── FAQ ── */
+    .faq-item { padding: 20px 0; border-bottom: 1px solid var(--gray-line); }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q { font-size: 14px; font-weight: 600; color: var(--black); margin-bottom: 10px; word-break: keep-all; }
+    .faq-a { font-size: 13px; color: var(--gray-mid); line-height: 1.7; word-break: keep-all; }
+
+    /* ── 정보 ── */
+    .info-list { list-style: none; padding: 0; }
+    .info-item {
+      display: flex;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--gray-line);
+      font-size: 13px;
+    }
+    .info-item:last-child { border-bottom: none; }
+    .info-item .i-label { color: var(--gray-light); flex-shrink: 0; width: 48px; }
+    .info-item .i-val { color: var(--gray-dark); }
+
+    .wf-memo {
+      font-size: 11px;
+      color: var(--gray-light);
+      border-top: 1px dashed var(--gray-line);
+      margin-top: 20px;
+      padding-top: 12px;
+    }
+    .wf-memo::before { content: '↳ 메모  '; font-weight: 600; }
+
+    .sticky-cta {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: var(--max-w);
+      padding: 12px 16px 20px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid var(--gray-line);
+      z-index: 200;
+    }
+    .sticky-cta a {
+      display: block;
+      background: var(--black);
+      color: var(--white);
+      border-radius: 4px;
+      padding: 15px;
+      font-size: 15px;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      letter-spacing: -0.3px;
+    }
+    .bottom-spacer { height: 80px; }
+  </style>
+</head>
+<body>
+
+<div class="version-bar">
+  <span>HIMAP · Landing v2 — 이명 특화</span>
+  <span>2026.03.11</span>
+</div>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo">HiMAP <span>하이맵의원</span></div>
+    <button class="h-cta">02-6232-7582</button>
+  </div>
+
+  <!-- ───── S01 HERO ───── -->
+  <section class="section">
+    <div class="sec-label">Section 01 · Hero</div>
+    <div class="img-ph">[ 이미지 · 귀를 막고 있는 인물 / 뇌-귀 연결 일러스트 ]</div>
+    <h1>이비인후과에서<br>"이상 없다"고 했는데<br>왜 소리는 계속 들리는 걸까요?</h1>
+
+    <div class="sound-line">
+      <p>윙 &nbsp;&nbsp; 찡 &nbsp;&nbsp; 매미 소리 &nbsp;&nbsp; 금속음</p>
+    </div>
+
+    <p class="lead">귀에는 아무 문제가 없다고 했습니다.<br>그런데 지금 이 순간에도 들립니다.</p>
+    <hr/>
+    <p>이명은 귀의 문제가 아닙니다.<br>뇌가 보내는 경고입니다.</p>
+    <button class="btn-main">📞 이명 원인 찾기 · 02-6232-7582</button>
+    <button class="btn-sub">💬 카카오 채널 상담</button>
+    <p class="wf-memo">히어로 이미지: 조용한 방에서 귀를 막고 있는 사람 또는 뇌-귀 연결 일러스트 권장</p>
+  </section>
+
+  <!-- ───── S02 공감 ───── -->
+  <section class="section">
+    <div class="sec-label">Section 02 · 공감</div>
+    <h2>혹시 이런 경험,<br>있으신가요?</h2>
+    <ul class="checklist">
+      <li>이비인후과, 신경과, 한의원을 다 다녀봤지만 원인을 못 찾았다</li>
+      <li>"나이 들면 생기는 거다", "스트레스 줄여라"는 말만 들었다</li>
+      <li>조용한 밤에, 잠들기 직전에 더 크게 들린다</li>
+      <li>스트레스받거나 피곤하면 어김없이 더 심해진다</li>
+      <li>이명 때문에 잠을 못 자고, 잠 못 자니 이명이 더 심해진다</li>
+      <li>처음엔 한쪽 귀였는데 이제 머릿속에서 나는 것 같다</li>
+      <li>소리가 언제 사라질지 몰라 하루하루가 불안하다</li>
+    </ul>
+    <div class="blockquote" style="margin-top:28px;">
+      <p>이명으로 고통받는 분들 대부분이<br>귀가 아닌 다른 곳에 원인이 있습니다.<br>그걸 찾지 못했을 뿐입니다.</p>
+    </div>
+  </section>
+
+  <!-- ───── S03 이명의 정체 ───── -->
+  <section class="section">
+    <div class="sec-label">Section 03 · 이명의 진짜 정체</div>
+    <h2>이명은 귀가 아니라<br>뇌에서 시작됩니다</h2>
+    <p>이비인후과에서 "이상 없다"는 말을 들었다면, 그건 귀의 구조에 문제가 없다는 뜻입니다.<br><br>하지만 이명의 진짜 원인은 귀가 아닌 '뇌'에 있는 경우가 훨씬 많습니다. 귀로 들어온 소리를 처리하는 뇌의 청각 피질이 과각성 상태가 되면, 실제 소리가 없어도 뇌 스스로 신호를 만들어냅니다.</p>
+    <hr/>
+    <h3>왜 이 타이밍에 더 심해질까?</h3>
+    <ul class="trigger-list">
+      <li class="trigger-item">
+        <span class="t-icon">😫</span>
+        <div class="t-text">
+          <strong>스트레스를 받으면</strong>
+          <span>코르티솔이 치솟으며 신경계 과활성화</span>
+        </div>
+      </li>
+      <li class="trigger-item">
+        <span class="t-icon">☕</span>
+        <div class="t-text">
+          <strong>커피를 마시면</strong>
+          <span>카페인이 교감신경을 자극</span>
+        </div>
+      </li>
+      <li class="trigger-item">
+        <span class="t-icon">😴</span>
+        <div class="t-text">
+          <strong>잠이 부족하면</strong>
+          <span>뇌의 자기회복 시스템(글림프)이 작동 못함</span>
+        </div>
+      </li>
+      <li class="trigger-item">
+        <span class="t-icon">🍺</span>
+        <div class="t-text">
+          <strong>술을 마시면</strong>
+          <span>혈관 확장 후 수축, 뇌 혈류 변화</span>
+        </div>
+      </li>
+      <li class="trigger-item">
+        <span class="t-icon">😔</span>
+        <div class="t-text">
+          <strong>감정이 격해지면</strong>
+          <span>자율신경계 불균형 즉각 반응</span>
+        </div>
+      </li>
+    </ul>
+    <div class="blockquote">
+      <p>이명은 귀가 아닌,<br>몸 어딘가가 무너지고 있다는<br>뇌의 경고입니다.</p>
+    </div>
+  </section>
+
+  <!-- ───── S04 왜 낫지 않았나 ───── -->
+  <section class="section">
+    <div class="sec-label">Section 04 · 왜 낫지 않았나</div>
+    <h2>지금까지 치료가<br>안 됐던 이유</h2>
+    <p>이비인후과에서는 귀를 봅니다.<br>신경과에서는 신경을 봅니다.<br>한의원에서는 기혈 순환을 봅니다.<br><br>하지만 이명의 뿌리가 장 환경의 염증인지, 부신 호르몬의 고갈인지, 뇌파의 과각성인지, 혈관 순환의 문제인지 — 이걸 찾는 병원은 드뭅니다.</p>
+    <hr/>
+    <h3>이명과 함께 겪고 계신 증상은?</h3>
+    <ul class="symptom-list">
+      <li><span class="s-icon">🌙</span> 잠들기 어렵다 / 자다가 깬다</li>
+      <li><span class="s-icon">😟</span> 이유 없이 불안하고 예민하다</li>
+      <li><span class="s-icon">🧠</span> 머리가 멍하고 집중이 안 된다 (브레인포그)</li>
+      <li><span class="s-icon">😔</span> 우울하거나 무기력한 날이 많다</li>
+      <li><span class="s-icon">🤢</span> 소화가 잘 안 되거나 장이 예민하다</li>
+      <li><span class="s-icon">😩</span> 늘 피곤하고 에너지가 없다</li>
+      <li><span class="s-icon">💆</span> 두통이나 뒷목 뻐근함이 자주 온다</li>
+    </ul>
+    <div class="callout">
+      2개 이상 해당된다면, 이명의 원인이 몸 전체에 있을 수 있습니다
+    </div>
+  </section>
+
+  <!-- ───── S05 하이맵 진단 방식 ───── -->
+  <section class="section">
+    <div class="sec-label">Section 05 · 하이맵 진단 방식</div>
+    <h2>하이맵의원이<br>이명을 보는 방식</h2>
+    <p>하이맵의원은 이명 환자를 진료할 때 귀만 보지 않습니다. 뇌파, 자율신경, 장 환경, 호르몬, 혈관 순환 — 이 모든 것이 이명과 연결되어 있기 때문입니다.</p>
+    <hr/>
+    <ul class="diag-list">
+      <li class="diag-item">
+        <div class="diag-tag">뇌</div>
+        <strong>정량뇌파 검사 (qEEG)</strong>
+        <p>청각 피질의 과각성 패턴을 시각화합니다. 어느 부위가, 얼마나 과활성 상태인지 숫자로 보입니다.</p>
+      </li>
+      <li class="diag-item">
+        <div class="diag-tag">자율신경</div>
+        <strong>HRV 자율신경 검사</strong>
+        <p>교감·부교감 신경의 균형을 평가합니다. 스트레스 받으면 이명이 심해지는 이유가 여기 있습니다.</p>
+      </li>
+      <li class="diag-item">
+        <div class="diag-tag">이명 주파수</div>
+        <strong>Tinometer — 이명을 수치로 측정</strong>
+        <p>"그냥 크게 들린다"가 아닙니다. 환자 고유의 이명 주파수와 크기를 수치로 측정하여 치료 전후를 객관적으로 비교합니다.</p>
+      </li>
+      <li class="diag-item">
+        <div class="diag-tag">몸 전체</div>
+        <strong>기능의학 검사 통합 분석</strong>
+        <p>장 환경, 부신 호르몬, 중금속, 혈관 상태까지 점검합니다. 이명의 뿌리가 어디인지 찾습니다.</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ───── S06 치료법 ───── -->
+  <section class="section">
+    <div class="sec-label">Section 06 · 치료법</div>
+    <h2>하이맵의 이명 치료,<br>이렇게 작동합니다</h2>
+    <ul class="treatment-list">
+      <li class="treatment-item">
+        <div class="tr-label">비약물 치료</div>
+        <h3>rTMS · 경두개 자기자극술</h3>
+        <p>과각성된 뇌를 안정시키는 비약물 치료입니다. 자기장으로 뇌의 특정 부위를 자극하면 과하게 흥분된 신경 회로가 안정화됩니다.</p>
+        <ul>
+          <li>미국 FDA · 국내 식약처 승인 치료</li>
+          <li>비침습적 · 마취 불필요 · 시술 후 즉시 일상 복귀</li>
+          <li>1회 약 25분 / 부작용 거의 없음</li>
+          <li>6만 건 이상 시술 경험 기반 맞춤 설계</li>
+        </ul>
+      </li>
+      <li class="treatment-item">
+        <div class="tr-label">이명 재훈련</div>
+        <h3>SoriCLEAR 프로그램</h3>
+        <p>Tinometer로 측정한 개인 이명 주파수를 기반으로 맞춤형 차폐음을 설계합니다.</p>
+        <p>이명 인지행동치료(CBT) + 이명재훈련치료(TRT) 통합. 소리를 없애는 것이 아닌, 소리가 더 이상 괴롭지 않은 상태를 만드는 것이 목표입니다.</p>
+      </li>
+      <li class="treatment-item">
+        <div class="tr-label">근본 치료</div>
+        <h3>기능의학 통합 치료</h3>
+        <p>이명의 뿌리(장, 부신, 혈관, 중금속)를 기능의학 검사로 찾아 영양처방 + 수액치료 + 식이 설계로 개선합니다. 뇌를 안정시키는 것과 동시에 이명을 만드는 몸 환경 자체를 바꿉니다.</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ───── S07 사례 ───── -->
+  <section class="section">
+    <div class="sec-label">Section 07 · 치료 사례</div>
+    <h2>하이맵에서 달라진<br>이명 환자들</h2>
+    <div class="case-item">
+      <div class="case-period">이명 6년 → 12주 완치</div>
+      <div class="case-title">"6년 된 이명, 12주 만에 소리가 사라졌습니다"</div>
+      <div class="case-body">김선태 님 (가명, 40대) — 왼쪽 귀에서 6년간 "찡" 하는 금속음. 잠들지 못하고 오전 내내 비몽사몽 상태 반복.<br><br>하이맵 검사 결과: 부신 기능 저하 / 고혈당 / 비타민D 결핍 / 자율신경 불균형<br><br>TMS + 수액요법 + 식이코칭 12주 진행</div>
+      <div class="case-result">
+        6~7주차 "이명 소리가 절반으로 줄었어요"<br>
+        12주차 "이제 소리가 안 들리네요"<br>
+        + 체지방 3.4kg 감소, 복부 2.8cm 감소
+      </div>
+    </div>
+    <div class="case-item">
+      <div class="case-period">이비인후과 정상 → 2회 만에 호전</div>
+      <div class="case-title">"이비인후과 효과 없던 이명, 2회 만에 달라졌습니다"</div>
+      <div class="case-body">50대 직장인 — "삐" 소리가 며칠 사이 급격히 악화. 이비인후과·한의원 치료 효과 없음.<br><br>하이맵 검사 결과: 콜레스테롤 228 / 장내미생물 뇌질환자 패턴과 89% 일치 / 간 해독 기능 정상의 절반 / 부신 고갈</div>
+      <div class="case-result">
+        2회 치료 후 "저녁에 신경 써서 들어야 느낄 정도로" 감소<br>
+        콜레스테롤도 약물 없이 정상화
+      </div>
+    </div>
+    <div class="case-item">
+      <div class="case-period">이명 + 불면 6개월 → 업무 복귀</div>
+      <div class="case-title">"22년 달려온 62세 안경원 원장님, 6개월 만에 업무 복귀"</div>
+      <div class="case-body">박준호 님 (가명, 62세) — 이명·불면증 동시 발생, 6개월간 일상생활 불가능.<br><br>하이맵 검사 결과: 코르티솔 야간 극저하 / 교감신경 과활성 / 호모시스테인 상승 / 당뇨 전단계</div>
+      <div class="case-result">
+        TMS 첫 치료 당일 밤 처음으로 깊은 수면<br>
+        "이제 소리와 함께 살 수 있어요" — 6개월 만에 업무 재개
+      </div>
+    </div>
+    <p class="wf-memo">실제 환자 후기 영상 or 텍스트 삽입 시 전환율 대폭 상승 예상</p>
+  </section>
+
+  <!-- ───── S08 차별점 ───── -->
+  <section class="section">
+    <div class="sec-label">Section 08 · 하이맵 차별점</div>
+    <h2>이명 치료,<br>병원마다 다른 이유가 있습니다</h2>
+    <ul class="strength-list">
+      <li class="strength-item">
+        <div class="s-num">01</div>
+        <div class="s-body">
+          <strong>7만 건 기능의학 + 6만 건 TMS 데이터</strong>
+          <p>같은 이명이라도 사람마다 원인이 다릅니다. 누적 데이터 기반의 예측력이 다릅니다.</p>
+        </div>
+      </li>
+      <li class="strength-item">
+        <div class="s-num">02</div>
+        <div class="s-body">
+          <strong>뇌파로 원인 찾고, TMS로 뇌를 바꿉니다</strong>
+          <p>qEEG로 과활성 부위를 정확히 찾고 그 부위를 자극합니다. 장비를 켜는 게 아닌, 데이터를 읽고 설계합니다.</p>
+        </div>
+      </li>
+      <li class="strength-item">
+        <div class="s-num">03</div>
+        <div class="s-body">
+          <strong>Tinometer로 이명을 수치화합니다</strong>
+          <p>"좀 나은 것 같아요"가 아닙니다. 치료 전후 주파수·크기를 비교하여 숫자로 확인합니다.</p>
+        </div>
+      </li>
+      <li class="strength-item">
+        <div class="s-num">04</div>
+        <div class="s-body">
+          <strong>정신과 전문의가 함께 봅니다</strong>
+          <p>이명 환자 대부분이 우울·불안·불면을 동반합니다. 정신건강의학과·가정의학과·내분비내과가 함께 뿌리를 찾습니다.</p>
+        </div>
+      </li>
+      <li class="strength-item">
+        <div class="s-num">05</div>
+        <div class="s-body">
+          <strong>20년 이상 된 이명도 포기하지 않습니다</strong>
+          <p>실제로 20년 이상 된 이명도 70% 이상 호전된 사례가 있습니다. 원인을 찾으면 방향은 반드시 생깁니다.</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ───── S09 FAQ ───── -->
+  <section class="section">
+    <div class="sec-label">Section 09 · FAQ</div>
+    <h2>이명에 대해<br>자주 묻는 질문</h2>
+    <div class="faq-item">
+      <div class="faq-q">이명은 정말 치료가 되나요?</div>
+      <div class="faq-a">이명은 포기할 질환이 아닙니다. 뿌리가 뇌의 과각성, 장 환경, 부신 호르몬, 혈관 문제 중 어디에 있는지를 찾으면 치료 방향이 생깁니다. 20년 이상 된 이명도 70% 이상 호전된 사례가 있습니다.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">TMS 치료는 안전한가요?</div>
+      <div class="faq-a">FDA와 식약처에서 승인된 비침습적 치료입니다. 약물을 사용하지 않으며 시술 후 즉시 일상생활이 가능합니다. 드물게 가벼운 두통이 생길 수 있으며, 타이레놀 1정으로 완화됩니다.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">몇 번이나 받아야 하나요?</div>
+      <div class="faq-a">빠른 경우 2~3회만에 효과를 느끼는 분도 있고, 일반적으로 10~20회를 권장합니다. 뇌파 상태·이명 기간·동반 증상에 따라 달라지며 치료 반응을 보며 유동적으로 조정합니다.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">오래된 이명도 가능한가요?</div>
+      <div class="faq-a">가능합니다. 이명 기간이 길수록 치료에 시간이 더 걸릴 수 있지만, 원인을 찾아 접근하면 호전이 가능합니다.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">이비인후과에서 정상인데 왜 오나요?</div>
+      <div class="faq-a">이비인후과 검사는 귀 구조의 이상 여부를 확인합니다. 하이맵의 기능의학 검사는 뇌 기능·자율신경·장 환경·호르몬 등 이명을 만드는 몸 전체의 기능적 원인을 찾습니다.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">지방에 살아도 치료받을 수 있나요?</div>
+      <div class="faq-a">전국에서 오십니다. 제주도·부산·울산은 물론 미국·영국 교포분들도 귀국 기간에 맞춰 집중 치료를 받으십니다. 첫 내원 전 전화로 사전 상담이 가능합니다.</div>
+    </div>
+  </section>
+
+  <!-- ───── S10 최종 CTA ───── -->
+  <section class="section">
+    <div class="sec-label">Section 10 · 마지막 CTA</div>
+    <h2>그 소리,<br>더 이상 혼자 듣지 않아도 됩니다</h2>
+    <p>이명이 일상을 망가뜨리고 있다면,<br>이제는 귀가 아닌 몸 전체를 봐야 할 때입니다.<br><br>22년 임상 경험, 7만 건 기능의학 데이터,<br>6만 건 이상의 TMS 시술 경험.<br><br>하이맵의원이 당신의 이명 원인을 찾겠습니다.</p>
+    <hr/>
+    <ul class="info-list">
+      <li class="info-item"><span class="i-label">전화</span><span class="i-val">02-6232-7582</span></li>
+      <li class="info-item"><span class="i-label">진료</span><span class="i-val">월·화·목·금 09:00–18:00 · 수·토 09:00–13:00 · 일·공휴일 휴진</span></li>
+      <li class="info-item"><span class="i-label">위치</span><span class="i-val">서울 서초구 교대역 인근</span></li>
+      <li class="info-item"><span class="i-label">카카오</span><span class="i-val">카카오 채널 상담 가능</span></li>
+    </ul>
+    <button class="btn-main">📞 이명 상담 전화하기 · 02-6232-7582</button>
+    <button class="btn-sub">💬 카카오 채널로 문의하기</button>
+    <p class="wf-memo">진료시간 병원측 확인 필요 / 원장님(이희창) 이명 관련 한 줄 멘트 삽입 검토</p>
+  </section>
+
+</div><!-- .page -->
+
+<div class="bottom-spacer"></div>
+
+<!-- 하단 고정 CTA -->
+<div class="sticky-cta">
+  <a href="tel:02-6232-7582">📞 이명 상담 전화하기 · 02-6232-7582</a>
+</div>
+
+</body>
+</html>
