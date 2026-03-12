@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#E86C1E" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0a0a0a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#E86C1E" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#E86C1E" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#E86C1E" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+
+  <!-- 글로우 효과 -->
+  <ellipse cx="600" cy="315" rx="480" ry="300" fill="url(#glow)"/>
+
+  <!-- 테두리 라인 -->
+  <rect x="1" y="1" width="1198" height="628" fill="none" stroke="#E86C1E" stroke-opacity="0.2" stroke-width="1.5"/>
+
+  <!-- 상단 배지 -->
+  <rect x="476" y="140" width="248" height="34" rx="17" fill="none" stroke="#E86C1E" stroke-opacity="0.4" stroke-width="1"/>
+  <text x="600" y="163" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#E86C1E" text-anchor="middle" letter-spacing="2">PERFORMANCE MARKETING</text>
+
+  <!-- 메인 로고 -->
+  <text x="600" y="270" font-family="Arial Black, Arial, sans-serif" font-size="96" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="-3">이루다<tspan fill="#E86C1E">.</tspan></text>
+
+  <!-- 구분선 -->
+  <rect x="200" y="300" width="800" height="1.5" fill="url(#lineGrad)"/>
+
+  <!-- 서브 타이틀 -->
+  <text x="600" y="360" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="rgba(255,255,255,0.65)" text-anchor="middle" letter-spacing="0">성과 중심 퍼포먼스 마케팅 에이전시</text>
+
+  <!-- 하단 태그들 -->
+  <rect x="284" y="410" width="130" height="32" rx="6" fill="none" stroke="rgba(232,108,30,0.3)" stroke-width="1"/>
+  <text x="349" y="431" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#E86C1E" text-anchor="middle" letter-spacing="0.5">Meta Ads</text>
+
+  <rect x="430" y="410" width="148" height="32" rx="6" fill="none" stroke="rgba(232,108,30,0.3)" stroke-width="1"/>
+  <text x="504" y="431" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#E86C1E" text-anchor="middle" letter-spacing="0.5">Google Ads</text>
+
+  <rect x="594" y="410" width="148" height="32" rx="6" fill="none" stroke="rgba(232,108,30,0.3)" stroke-width="1"/>
+  <text x="668" y="431" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#E86C1E" text-anchor="middle" letter-spacing="0.5">크리에이티브</text>
+
+  <rect x="758" y="410" width="160" height="32" rx="6" fill="none" stroke="rgba(232,108,30,0.3)" stroke-width="1"/>
+  <text x="838" y="431" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#E86C1E" text-anchor="middle" letter-spacing="0.5">랜딩페이지 최적화</text>
+
+  <!-- 하단 URL -->
+  <text x="600" y="560" font-family="Arial, sans-serif" font-size="14" font-weight="400" fill="rgba(255,255,255,0.25)" text-anchor="middle" letter-spacing="1">iruda-landing.vercel.app</text>
+</svg>
