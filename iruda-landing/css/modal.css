@@ -1,0 +1,229 @@
+/* ========== MODAL OVERLAY ========== */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+/* ========== MODAL BOX ========== */
+.modal {
+  background: #111111;
+  border: 1px solid rgba(232, 108, 30, 0.3);
+  border-radius: 16px;
+  padding: 56px 48px;
+  width: 100%;
+  max-width: 520px;
+  position: relative;
+  animation: modalIn 0.3s ease;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 1.5rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: color 0.2s;
+}
+
+.modal-close:hover {
+  color: #ffffff;
+}
+
+.modal-label {
+  font-size: 0.65rem;
+  font-weight: 900;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #E86C1E;
+  margin-bottom: 12px;
+}
+
+.modal h2 {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: -1px;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.modal-desc {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 36px;
+  line-height: 1.6;
+}
+
+/* ========== FORM ========== */
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.form-group label span {
+  color: #E86C1E;
+  margin-left: 2px;
+}
+
+.form-group input,
+.form-group textarea {
+  background: #161616;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-size: 0.95rem;
+  color: #ffffff;
+  font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+  width: 100%;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: rgba(232, 108, 30, 0.6);
+  box-shadow: 0 0 0 3px rgba(232, 108, 30, 0.1);
+}
+
+.form-group input.error,
+.form-group textarea.error {
+  border-color: rgba(239, 68, 68, 0.6);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
+}
+
+.error-msg {
+  font-size: 0.78rem;
+  color: #f87171;
+  display: none;
+}
+
+.error-msg.visible {
+  display: block;
+}
+
+/* ========== SUBMIT BUTTON ========== */
+.btn-submit {
+  background: #E86C1E;
+  color: #0a0a0a;
+  border: none;
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-submit:hover:not(:disabled) {
+  background: #FF8A3D;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(232, 108, 30, 0.4);
+}
+
+.btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ========== STATES ========== */
+.modal-success,
+.modal-error-state {
+  display: none;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.modal-success.visible,
+.modal-error-state.visible {
+  display: block;
+}
+
+.modal-success .success-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+.modal-success h3 {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.modal-success p {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.7;
+}
+
+.modal-error-state p {
+  font-size: 0.9rem;
+  color: #f87171;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 480px) {
+  .modal {
+    padding: 40px 28px;
+  }
+
+  .modal h2 {
+    font-size: 1.5rem;
+  }
+}
